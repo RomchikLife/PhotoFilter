@@ -116,7 +116,7 @@ class PhotoFilter(QWidget, Filters):
 
     def open_file(self):
         ofname = QFileDialog.getOpenFileName(self, 'Open file',
-                                        filter='*.jpg *.png')[0]
+                                filter='*.jpg *.jpeg *.png *.ico')[0]
 
         if ofname:
             self.fname = ofname
@@ -124,7 +124,10 @@ class PhotoFilter(QWidget, Filters):
             self.td = tempfile.TemporaryDirectory()
             self.oi = os.path.join((self.td).name,
                                    os.path.basename(self.fname))
-            Image.open(self.fname).save(self.oi)
+            img = Image.open(self.fname)
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            img.save(self.oi)
             self.screen_print(self.oi)
 
     def save_file(self):
@@ -135,10 +138,10 @@ class PhotoFilter(QWidget, Filters):
                 sf = Image.open(os.path.join((self.td).name,
                                 self.rec + os.path.basename(self.fname)))
 
-                sn = sname[0]
-                if sn[-4:] != '.jpg' and sn[-4:] != '.png':
-                    sn = sn + sname[1][-4:]
-                sf.save(sn)
+                if sname[0].split('.')[-1] == sname[1].split('.')[-1]:
+                    sf.save(sname[0])
+                else:
+                    sf.save(sname[0] + '.' + sname[1].split('.')[-1])
 
     def show_im(self, im):
         fn = os.path.join((self.td).name,

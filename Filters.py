@@ -17,8 +17,6 @@ class Filters:
                 self.overlap()
             else:
                 im = Image.open(self.oi)
-                if im.mode != 'RGB':
-                    im = im.convert('RGB')
 
                 x, y = im.size
                 im = im.filter(ImageFilter.GaussianBlur(
@@ -34,8 +32,6 @@ class Filters:
                 self.overlap()
             else:
                 im = Image.open(self.oi)
-                if im.mode != 'RGB':
-                    im = im.convert('RGB')
                 pixels = im.load()
                 x, y = im.size
 
@@ -55,8 +51,6 @@ class Filters:
                 self.overlap()
             else:
                 im_o = Image.open(self.oi)
-                if im_o.mode != 'RGB':
-                    im_o = im_o.convert('RGB')
                 pixels = im_o.load()
                 x, y = im_o.size
                 im = Image.new('RGB', (x, y))
@@ -77,8 +71,6 @@ class Filters:
                 self.overlap()
             else:
                 im = Image.open(self.oi)
-                if im.mode != 'RGB':
-                    im = im.convert('RGB')
                 pixels = im.load()
                 x, y = im.size
 
@@ -97,8 +89,6 @@ class Filters:
                 self.overlap()
             else:
                 im = Image.open(self.oi)
-                if im.mode != 'RGB':
-                    im = im.convert('RGB')
                 pixels = im.load()
                 x, y = im.size
 
@@ -120,8 +110,6 @@ class Filters:
                 self.overlap()
             else:
                 im = Image.open(self.oi)
-                if im.mode != 'RGB':
-                    im = im.convert('RGB')
 
                 im = im.filter(ImageFilter.CONTOUR)
 
@@ -135,8 +123,6 @@ class Filters:
                 self.overlap()
             else:
                 im = Image.open(self.oi)
-                if im.mode != 'RGB':
-                    im = im.convert('RGB')
 
                 im = im.filter(ImageFilter.EMBOSS)
 
